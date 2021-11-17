@@ -14,6 +14,7 @@
 #include <Syslog.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
+#include <LittleFS.h>
 #include "Ornament.h"
 
 // ----------------------------------------------------------------------------
@@ -132,15 +133,15 @@ AsyncWebSocket ws("/ws");
 // SPIFFS initialization
 // ----------------------------------------------------------------------------
 
-void initSPIFFS() {
-  if (!SPIFFS.begin()) {
+void initLittleFS() {
+  if (!LittleFS.begin()) {
     Serial.println("Cannot mount SPIFFS volume...");
     while (1) {
-        onboard_led.on = millis() % 200 < 50;
-        onboard_led.update();
     }
   }
 }
+
+
 
 // ----------------------------------------------------------------------------
 // Connecting to the WiFi network
@@ -170,30 +171,30 @@ void initWiFi() {
 
 String processor(const String& var){
     if (var == "button1") {
-        return (Snowman.ledStatus == true) ? "on" : "off";
+        return (Snowman.ledStatus == true) ? "led on" : "led";
     }
     if (var == "button2") {
-        return (Train.ledStatus == true) ? "on" : "off";
+        return (Train.ledStatus == true) ? "led on" : "led";
     }
     if (var == "button3") {
-        return (randomMode == true) ? "on" : "off";
+        return (randomMode == true) ? "led on" : "led";
     }
     if (var == "button4") {
-        return (alternateMode == true) ? "on" : "off";
+        return (alternateMode == true) ? "led on" : "led";
     }
     if (var == "button5") {
-        return (debugMode == true) ? "on" : "off";
+        return (debugMode == true) ? "led on" : "led";
     }
 
 }
 
 void onRootRequest(AsyncWebServerRequest *request) {
-  request->send(SPIFFS, "/index.html", "text/html", false, processor);
+  request->send(LittleFS, "/index.html", "text/html", false, processor);
 }
 
 void initWebServer() {
     server.on("/", onRootRequest);
-    server.serveStatic("/", SPIFFS, "/");
+    server.serveStatic("/", LittleFS, "/");
     server.begin();
 }
 
@@ -207,11 +208,11 @@ void notifyClients() {
     const uint16_t size = JSON_OBJECT_SIZE(6);
     StaticJsonDocument<size> json;
     
-    ( Snowman.ledStatus ) ? json["button1_status"] = "on" : json["button1_status"] = "off";
-    ( Train.ledStatus  ) ? json["button2_status"] = "on" : json["button2_status"] = "off";
-    ( randomMode ) ? json["button3_status"] = "on" : json["button3_status"] = "off";
-    ( alternateMode ) ? json["button4_status"] = "on" : json["button4_status"] = "off";
-    ( debugMode ) ? json["button5_status"] = "on" : json["button5_status"] = "off";
+    ( Snowman.ledStatus ) ? json["button1_status"] = "led on" : json["button1_status"] = "led";
+    ( Train.ledStatus  ) ? json["button2_status"] = "led on" : json["button2_status"] = "led";
+    ( randomMode ) ? json["button3_status"] = "led on" : json["button3_status"] = "led";
+    ( alternateMode ) ? json["button4_status"] = "led on" : json["button4_status"] = "led";
+    ( debugMode ) ? json["button5_status"] = "led on" : json["button5_status"] = "led";
     
      String jsonBody;
     doLog(jsonBody);
@@ -346,7 +347,7 @@ void setup() {
     
     Serial.begin(115200); delay(500);
 
-    initSPIFFS();
+    initLittleFS();
     initWiFi();
     initWebSocket();
     initWebServer();

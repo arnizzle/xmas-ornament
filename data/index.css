@@ -41,6 +41,33 @@ h1 {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+
+.led {
+  position: relative;
+  width: 3em;
+  height: 3em;
+  border: 2px solid #000;
+  border-radius: 2.5em;
+  background-image: radial-gradient(farthest-corner at 50% 20%, #b30000 0%, #330000 100%);
+  box-shadow: 0 0.5em 1em rgba(102, 0, 0, 0.3);
+}
+
+
+#led {
+  position: relative;
+  width: 3em;
+  height: 3em;
+  border: 2px solid #000;
+  border-radius: 2.5em;
+  background-image: radial-gradient(farthest-corner at 50% 20%, #b30000 0%, #330000 100%);
+  box-shadow: 0 0.5em 1em rgba(102, 0, 0, 0.3);
+}
+
+#led.on {
+  background-image: radial-gradient(farthest-corner at 50% 75%, red 0%, #990000 100%);
+  box-shadow: 0 1em 1.5em rgba(255, 0, 0, 0.5);
+}
+
 .led {
   position: relative;
   width: 3em;
@@ -56,7 +83,7 @@ h1 {
   box-shadow: 0 1em 1.5em rgba(255, 0, 0, 0.5);
 }
 
-.led:after {
+#led:after {
   content: '';
   position: absolute;
   top: .3em;
@@ -67,118 +94,6 @@ h1 {
   background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
 }
 
-#led1 .led {
-  position: relative;
-}
-
-#led1.on {
-  box-shadow: 0 1em 1.5em rgba(255, 0, 0, 0.5);
-}
-
-#led1.after {
-  content: '';
-}
-
-#led2 {
-  position: relative;
-  width: 3em;
-  height: 3em;
-  border: 2px solid #000;
-  border-radius: 2.5em;
-  background-image: radial-gradient(farthest-corner at 50% 20%, #b30000 0%, #330000 100%);
-  box-shadow: 0 0.5em 1em rgba(102, 0, 0, 0.3);
-}
-
-#led2.on {
-  background-image: radial-gradient(farthest-corner at 50% 75%, red 0%, #990000 100%);
-  box-shadow: 0 1em 1.5em rgba(255, 0, 0, 0.5);
-}
-
-#led2:after {
-  content: '';
-  position: absolute;
-  top: .3em;
-  left: 1em;
-  width: 60%;
-  height: 40%;
-  border-radius: 60%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
-}
-
-#led3 {
-  position: relative;
-  width: 3em;
-  height: 3em;
-  border: 2px solid #000;
-  border-radius: 2.5em;
-  background-image: radial-gradient(farthest-corner at 50% 20%, #b30000 0%, #330000 100%);
-  box-shadow: 0 0.5em 1em rgba(102, 0, 0, 0.3);
-}
-
-#led3.on {
-  background-image: radial-gradient(farthest-corner at 50% 75%, red 0%, #990000 100%);
-  box-shadow: 0 1em 1.5em rgba(255, 0, 0, 0.5);
-}
-
-#led3:after {
-  content: '';
-  position: absolute;
-  top: .3em;
-  left: 1em;
-  width: 60%;
-  height: 40%;
-  border-radius: 60%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
-}
-
-
-#led4 {
-  position: relative;
-  width: 3em;
-  height: 3em;
-  border: 2px solid #000;
-  border-radius: 2.5em;
-  background-image: radial-gradient(farthest-corner at 50% 20%, #b30000 0%, #330000 100%);
-  box-shadow: 0 0.5em 1em rgba(102, 0, 0, 0.3);
-}
-#led4.on {
-  background-image: radial-gradient(farthest-corner at 50% 75%, red 0%, #990000 100%);
-  box-shadow: 0 1em 1.5em rgba(255, 0, 0, 0.5);
-}
-#led4:after {
-  content: '';
-  position: absolute;
-  top: .3em;
-  left: 1em;
-  width: 60%;
-  height: 40%;
-  border-radius: 60%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
-}
-
-#led5 {
-  position: relative;
-  width: 3em;
-  height: 3em;
-  border: 2px solid #000;
-  border-radius: 2.5em;
-  background-image: radial-gradient(farthest-corner at 50% 20%, #b30000 0%, #330000 100%);
-  box-shadow: 0 0.5em 1em rgba(102, 0, 0, 0.3);
-}
-#led5.on {
-  background-image: radial-gradient(farthest-corner at 50% 75%, red 0%, #990000 100%);
-  box-shadow: 0 1em 1.5em rgba(255, 0, 0, 0.5);
-}
-#led5:after {
-  content: '';
-  position: absolute;
-  top: .3em;
-  left: 1em;
-  width: 60%;
-  height: 40%;
-  border-radius: 60%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
-}
 
 button {
   padding: .5em .75em;
